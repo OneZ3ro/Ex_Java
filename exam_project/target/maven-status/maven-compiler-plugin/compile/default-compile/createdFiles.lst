@@ -1,0 +1,7 @@
+model\bean\UtenteBean.class
+model\bean\LibroBean.class
+utils\DbConnection.class
+model\bean\RuoloBean.class
+model\bean\PegiBean.class
+model\dao\UtenteDao.class
+application\App.class
