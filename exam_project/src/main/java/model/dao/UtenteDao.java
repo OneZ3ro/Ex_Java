@@ -34,6 +34,7 @@ public class UtenteDao {
 				utente.setPassword(rs.getString("password"));
 				utente.setPremium(rs.getBoolean("is_premium"));
 				utente.setIdRuolo(rs.getLong("id_ruolo"));
+				utente.setPremium(rs.getBoolean("is_premium"));
 				utente.setDataCreazione(rs.getTimestamp("data_creazione").toLocalDateTime());
 				utente.setDataModifica(rs.getTimestamp("data_modifica").toLocalDateTime());
 				utente.setFlgCancellato(rs.getBoolean("flg_cancellato"));
@@ -49,7 +50,7 @@ public class UtenteDao {
 	}
 	
 	public UtenteBean findById(Long id) {
-		String query = "SELECT * FROM utente WHERE id_utente=?";
+		String query = "SELECT * FROM utenti WHERE id_utente=?";
 		
 		DbConnection dbCon = new DbConnection();
 		Connection con = dbCon.getConnection();
@@ -76,6 +77,7 @@ public class UtenteDao {
 				utente.setPassword(rs.getString("password"));
 				utente.setPremium(rs.getBoolean("is_premium"));
 				utente.setIdRuolo(rs.getLong("id_ruolo"));
+				utente.setPremium(rs.getBoolean("is_premium"));
 				utente.setDataCreazione(rs.getTimestamp("data_creazione").toLocalDateTime());
 				utente.setDataModifica(rs.getTimestamp("data_modifica").toLocalDateTime());
 				utente.setFlgCancellato(rs.getBoolean("flg_cancellato"));
@@ -91,7 +93,7 @@ public class UtenteDao {
 	
 	public Map<Long, Integer> firstQueryExam (){
 		List<UtenteBean> allUtenti = this.findAll();
-		String query = "SELECT COUNT(id_utente) AS total FROM utenti_libri WHERE id_utente = ?";
+		String query = "SELECT COUNT(id_utente) AS total FROM utenti_libri WHERE id_utente = ? AND descrizione = 'Acquisto'";
 		Map<Long, Integer> utentiTrovati = new HashMap<>();
 		
 
@@ -119,11 +121,12 @@ public class UtenteDao {
 			e.printStackTrace();
 		}
 		dbCon.closeConnection(con);
-		for (Map.Entry<Long, Integer> entry : utentiTrovati.entrySet()) {
+		/* for (Map.Entry<Long, Integer> entry : utentiTrovati.entrySet()) {
 		    System.out.println("Utente id: " + entry.getKey() + " ha comprato " + entry.getValue().toString() + " libri in totale");
-		}
+		} */
 		
 		return utentiTrovati;
 	}
+	
 
 }

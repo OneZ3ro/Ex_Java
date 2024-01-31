@@ -10,8 +10,9 @@
     <div class="container">
         <h2 class="text-center py-3">Hello World!</h2>
         <div class="homeBtns d-flex justify-content-between">
-            <div> <a class="btn btn-primary" href="signin.jsp">Signin Page</a> </div>
-            <div> <a class="btn btn-primary" href="login.jsp">Login Page</a> </div>
+            <div> <a class="btn btn-primary" href="FirstServlet">Primo es</a> </div>
+            <div> <a class="btn btn-primary" href="getAutore.jsp">Secondo es</a> </div>
+            <div> <a class="btn btn-primary" href="ThirdServlet">Terzo es</a> </div>
         </div>
     </div>
 </body>
