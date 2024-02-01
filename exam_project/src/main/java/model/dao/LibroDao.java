@@ -14,10 +14,9 @@ import model.bean.LibroBean;
 import utils.DbConnection;
 
 public class LibroDao {
+	DbConnection dbCon = DbConnection.getInstance();
 	public List<LibroBean> secondQueryExam(String autore) {
 		String query = "SELECT * FROM libri where autore = ? order by data_pubblicazione";
-		
-		DbConnection dbCon = new DbConnection();
 		Connection con = dbCon.getConnection();
 		
 		PreparedStatement ps = null;
@@ -67,7 +66,6 @@ public class LibroDao {
 		Map<Long, Integer> libriTrovati = new HashMap<>();
 		
 
-		DbConnection dbCon = new DbConnection();
 		Connection con = dbCon.getConnection();
 		
 		Statement st = null;

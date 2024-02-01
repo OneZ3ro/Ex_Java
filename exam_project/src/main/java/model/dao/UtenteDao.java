@@ -15,10 +15,11 @@ import utils.DbConnection;
 
 public class UtenteDao {
 
+	DbConnection dbCon = DbConnection.getInstance();
 	public List<UtenteBean> findAll() {
 		String query = "SELECT * FROM utenti";
-		DbConnection dbConnection = new DbConnection();
-		Connection con = dbConnection.getConnection();
+		
+		Connection con = dbCon.getConnection();
 		Statement st = null;
 		List<UtenteBean> utenti = new ArrayList<>();
 		try {
@@ -45,14 +46,12 @@ public class UtenteDao {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		dbConnection.closeConnection(con);
+		dbCon.closeConnection(con);
 		return utenti;
 	}
 
 	public UtenteBean findById(Long id) {
 		String query = "SELECT * FROM utenti WHERE id_utente=?";
-
-		DbConnection dbCon = new DbConnection();
 		Connection con = dbCon.getConnection();
 
 		PreparedStatement ps = null;
@@ -75,7 +74,6 @@ public class UtenteDao {
 				utente.setDataNascita(rs.getTimestamp("data_nascita").toLocalDateTime().toLocalDate());
 				utente.setEmail(rs.getString("email"));
 				utente.setPassword(rs.getString("password"));
-				utente.setPremium(rs.getBoolean("is_premium"));
 				utente.setIdRuolo(rs.getLong("id_ruolo"));
 				utente.setPremium(rs.getBoolean("is_premium"));
 				utente.setDataCreazione(rs.getTimestamp("data_creazione").toLocalDateTime());
@@ -96,7 +94,6 @@ public class UtenteDao {
 		String query = "SELECT COUNT(id_utente) AS total FROM utenti_libri WHERE id_utente = ? AND descrizione = 'Acquisto'";
 		Map<Long, Integer> utentiTrovati = new HashMap<>();
 
-		DbConnection dbCon = new DbConnection();
 		Connection con = dbCon.getConnection();
 
 		PreparedStatement ps = null;
@@ -134,7 +131,6 @@ public class UtenteDao {
 		List<UtenteBean> utentiTrovati = new ArrayList<>();
 		Map<Long, Integer> utentiPrevQuery = this.firstQueryExam();
 
-		DbConnection dbCon = new DbConnection();
 		Connection con = dbCon.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs;
